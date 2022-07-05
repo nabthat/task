@@ -1,24 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
+@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+// @import '~@angular/material/theming';//notice that the file imported is also different
+// @include mat-core();
 
-@import 'styles-variables';
 
-@import '~bootstrap/scss/bootstrap-reboot';
-@import '~bootstrap/scss/bootstrap-grid';
-@import 'styles-reset';
+// @import 'styles-variables';
 
-@include mat.core();
+// @import '~bootstrap/scss/bootstrap-reboot';
+// @import '~bootstrap/scss/bootstrap-grid';
+// @import 'styles-reset';
 
-@import './themes/default-theme';
-@import 'styles-reset.scss-theme';
-@import './app/app/app.component.scss-theme';
+// @import './themes/default-theme';
+// @import 'styles-reset.scss-theme';
+// @import './app/app/app.component.scss-theme';
 
-@mixin custom-components-theme($theme) {
-  @include app-styles-reset-theme($theme);
-  @include app-app-component-theme($theme);
-}
+// @mixin custom-components-theme($theme) {
+//   @include app-styles-reset-theme($theme);
+//   @include app-app-component-theme($theme);
+// }
 
-.default-theme {
-  @include mat.all-component-themes($app-theme);
-  @include custom-components-theme($app-theme);
-}
+// .default-theme {
+//   @include custom-components-theme($app-theme);
+// }
+
+// .mat-progress-spinner circle, .mat-spinner circle {
+//   stroke: #3f51b5;
+// }

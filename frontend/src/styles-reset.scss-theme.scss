@@ -1,29 +1,27 @@
-@use '@angular/material' as mat;
+@import '~@angular/material/theming';//notice that the file imported is also different
+@include mat-core();
 
 @mixin app-styles-reset-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $foreground: map-get($theme, foreground);
 
   a {
-    color: mat.get-color-from-palette($foreground, text);
+    color: #0d6efd;
 
     &:hover {
-      color: mat.get-color-from-palette($accent);
+      color: #0a58ca;
     }
   }
 
   code {
-    color: mat.get-color-from-palette($accent, lighter-contrast);
-    background-color: mat.get-color-from-palette($accent, lighter);
+    color: #03a9f4;
+    background-color: #0288d1;
   }
 
   p {
     a {
-      color: mat.get-color-from-palette($accent);
+      color: #03a9f4;
 
       &:hover {
-        color: mat.get-color-from-palette($accent, darker);
+        color: #0288d1;
       }
     }
   }

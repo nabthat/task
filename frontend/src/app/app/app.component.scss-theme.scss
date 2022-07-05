@@ -1,50 +1,45 @@
-@use '@angular/material' as mat;
+@import '~@angular/material/theming';//notice that the file imported is also different
+@include mat-core();
 
 @mixin app-app-component-theme($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
 
   mat-sidenav-container {
     mat-toolbar {
       button {
         &.active {
-          color: mat.get-color-from-palette($accent, default-contrast);
-          background-color: mat.get-color-from-palette($accent);
+          color: #fff;
+          background-color: #03a9f4;
         }
       }
 
       .link {
-        color: mat.get-color-from-palette($primary, default-contrast);
+        color: #03a9f4;
       }
     }
 
     mat-sidenav {
       .mat-list-item {
         &.active {
-          color: mat.get-color-from-palette($accent, default-contrast);
-          background-color: mat.get-color-from-palette($accent) !important;
+          color: #fff;
+          background-color: #03a9f4 !important;
 
           &:hover {
-            background-color: mat.get-color-from-palette(
-              $accent,
-              darker
-            ) !important;
+            background-color: #0288d1!important;
           }
         }
       }
     }
 
     .footer {
-      color: mat.get-color-from-palette($primary, lighter);
-      background-color: mat.get-color-from-palette($primary, darker);
+      color: #7986cb;
+      background-color: #1a237e;
 
       .links,
       .signature {
         a {
-          color: mat.get-color-from-palette($primary, lighter);
+          color: #7986cb;
           &:hover {
-            color: mat.get-color-from-palette($accent);
+            color: #03a9f4;
           }
         }
       }
@@ -52,22 +47,23 @@
   }
 
   .error-notification-overlay {
-    color: mat.get-color-from-palette($warn, default-contrast);
-    background-color: mat.get-color-from-palette($warn);
+    color:#fff;
+    background-color:#d81b60
   }
 
   .info-notification-overlay {
-    color: mat.get-color-from-palette($accent, default-contrast);
-    background-color: mat.get-color-from-palette($accent);
+    color:#fff;
+    background-color:#03a9f4
   }
 
-  .success-notification-overlay {
-    color: mat.get-color-from-palette($success-colors, default-contrast);
-    background-color: mat.get-color-from-palette($success-colors);
+  .success-notification-overlay{
+    color:rgba(0,0,0,.87);
+    background-color:#66bb6a
+  }
+  
+  .warning-notification-overlay{
+    color:rgba(0,0,0,.87);
+    background-color:#ffca28
   }
 
-  .warning-notification-overlay {
-    color: mat.get-color-from-palette($warning-colors, default-contrast);
-    background-color: mat.get-color-from-palette($warning-colors);
-  }
 }

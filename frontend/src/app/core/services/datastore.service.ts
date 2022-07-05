@@ -3,11 +3,13 @@ import { JsonApiDatastoreConfig, JsonApiDatastore, DatastoreConfig } from 'nab-a
 import { environment } from "@environments/environment";
 
 import { Vehicle } from '@models/vehicle.model'
+import { Location } from '@models/location.model'
 
 const config: DatastoreConfig = {
   baseUrl: [environment.apiUrl, environment.apiPath].join(''),
   models: {
     vehicle: Vehicle,
+    location: Location,
   }
 }
 

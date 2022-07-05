@@ -1,7 +1,8 @@
-@use '@angular/material' as mat;
+@import '~@angular/material/theming';//notice that the file imported is also different
+@include mat-core();
 
-$app-primary: mat.define-palette(mat.$indigo-palette, 800, 300, 900);
-$app-accent: mat.define-palette(mat.$light-blue-palette);
-$app-warn: mat.define-palette(mat.$pink-palette, 600);
+$app-primary: mat-palette($mat-indigo, 800, 300, 900);
+$app-accent: mat-palette($mat-light-blue);
+$app-warn: mat-palette($mat-pink, 600);
 
-$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);

@@ -21,6 +21,7 @@
       [pageIndex]="0"
       [pageSize]="10"
       [pageSizeOptions]="[5, 10, 20]"
+      (page)="pageChange($event)"
       aria-label="Select page">
   </mat-paginator>
 </div>
