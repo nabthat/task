@@ -11,6 +11,20 @@ module RailsApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.generators do |g|
+      g.system_tests nil
+      g.test_framework :rspec,
+        :view_specs    => false,
+        :request_specs => false,
+        :routing_specs => false
+      g.helper false
+      g.assets  false
+      g.decorator false
+      g.fixture_replacement :factory_bot
+      g.factory_bot dir: 'spec/factories'
+      g.orm :active_record, primary_key_type: :uuid
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
