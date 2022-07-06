@@ -1,0 +1,34 @@
+.toolbar-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.site-wrapper{
+  position: absolute;
+  top: 64px;
+  bottom: 64px;
+  left: 0;
+  right: 0;
+
+  @media (max-width: 599px){
+    top: 56px;
+    bottom: 56px;
+  }
+}
+
+.site-content{
+  padding: 0 20px;
+  margin: 20px 0;
+  height: calc(100% - 40px);
+  position: relative;
+}
+
+.toolbar-footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+}

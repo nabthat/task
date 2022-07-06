@@ -1,31 +1,60 @@
-<div class="mat-elevation-z8">
-  <h3>Vehicle</h3>
-  <div>
-    <span>VIN: </span>
-    <span>{{vehicle.vin}}</span>
-  </div>
-  <div>
-    <span>Stock: </span>
-    <span>{{vehicle.stock}}</span>
-  </div>
-  <div>
-    <span>Year: </span>
-    <span>{{vehicle.year}}</span>
-  </div>
-  <div>
-    <span>Make: </span>
-    <span>{{vehicle.make}}</span>
-  </div>
-  <div>
-    <span>Model: </span>
-    <span>{{vehicle.model}}</span>
-  </div>
-  <div>
-    <span>Trim: </span>
-    <span>{{vehicle.trim}}</span>
-  </div>
-  <div>
-    <span>PRICE: </span>
-    <span>{{vehicle.price}}</span>
-  </div>
+<h1 mat-dialog-title>Vehicle</h1>
+<div mat-dialog-content>
+  <mat-list>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>pin</mat-icon>
+      <p matLine>VIN</p>
+      <p matLine>{{data.vin}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>tag</mat-icon>
+      <p matLine>Stock</p>
+      <p matLine>{{data.stock}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>calendar_today</mat-icon>
+      <p matLine>Year</p>
+      <p matLine>{{data.year}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>directions_car</mat-icon>
+      <p matLine>Make</p>
+      <p matLine>{{data.make}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>directions_car</mat-icon>
+      <p matLine>Model</p>
+      <p matLine>{{data.model}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>directions_car</mat-icon>
+      <p matLine>Trim</p>
+      <p matLine>{{data.trim}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>request_quote</mat-icon>
+      <p matLine>Price</p>
+      <p matLine>{{data.price}}</p>
+    </mat-list-item>
+
+  </mat-list>
 </div>

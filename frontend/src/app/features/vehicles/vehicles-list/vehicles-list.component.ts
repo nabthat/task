@@ -7,11 +7,13 @@ import { map } from 'rxjs/operators'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // services
 import { DatastoreService } from '@core/services/datastore.service'
 // models
 import { Vehicle } from '@models/vehicle.model'
 import { VehiclesDataSource } from './vehicles.datasource';
+import { VehiclesShowComponent } from '../vehicles-show/vehicles-show.component';
 
 @Component({
   selector: 'app-vehicles-vehicles-list',
@@ -27,7 +29,7 @@ export class VehiclesListComponent implements AfterViewInit {
   dataSource: VehiclesDataSource;
   paramsChangeSubscription: Subscription;
 
-  displayedColumns: string[] = ['index', 'vin', 'stock', 'year', 'name', 'price','status'];
+  displayedColumns: string[] = ['index', 'vin', 'stock', 'year', 'name', 'price', 'status'];
   
   availablePageSizes: number[] = [5, 10, 20]
 
@@ -37,12 +39,11 @@ export class VehiclesListComponent implements AfterViewInit {
   sortActive: string = 'name'
   sortDirection: 'asc'|'desc' = 'asc'
 
-  public value = '';
-
   constructor(
     private router: Router,
     private datastoreService: DatastoreService,
     private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
     this.dataSource = new VehiclesDataSource(this.datastoreService);
   }
@@ -84,6 +85,10 @@ export class VehiclesListComponent implements AfterViewInit {
   changeSort() {
     this.paginator.pageIndex = 0
     this.changePage()
+  }
+
+  openDialog( vehicle ) {
+    this.dialog.open(VehiclesShowComponent , { width: '400px' , data : vehicle } );
   }
 
   ngOnDestroy() {
