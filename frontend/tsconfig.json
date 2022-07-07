@@ -24,6 +24,7 @@
     "paths": {
       "@node_modules/*" : ["src/../node_modules/*"],
       "@core/*" : ["src/app/core/*"],
+      "@shared/*" : ["src/app/shared/*"],
       "@models/*" : ["src/app/core/models/*"],
       "@features/*" : ["src/app/features/*"],
       "@environments/*" : ["src/environments/*"],

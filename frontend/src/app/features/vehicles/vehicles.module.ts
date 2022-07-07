@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { MaterialAllModule } from '../../../material.module';
-
+// modules
+import { SharedModule } from '@shared/shared.module';
 // components
 import { VehiclesListComponent } from './vehicles-list/vehicles-list.component';
 import { VehiclesShowComponent, VehicleResolver } from './vehicles-show/vehicles-show.component';
@@ -28,9 +26,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    SharedModule,
     RouterModule.forChild(routes),
-    MaterialAllModule
   ],
   providers: [
     VehicleResolver

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialAllModule } from '../material.module';
-import { CoreModule } from './core/core.module';
+import { SharedModule } from '@shared/shared.module';
+import { CoreModule } from '@core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,9 +18,8 @@ import { ErrorComponent } from './components/error/error.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialAllModule,
     CoreModule,
-
+    SharedModule,
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],

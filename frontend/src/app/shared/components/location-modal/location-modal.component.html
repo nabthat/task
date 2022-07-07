@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Location</h1>
+<div mat-dialog-content>
+  <mat-list>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>map</mat-icon>
+      <p matLine>Place</p>
+      <p matLine>{{data.name}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>location_city</mat-icon>
+      <p matLine>City</p>
+      <p matLine>{{data.city}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>place</mat-icon>
+      <p matLine>Year</p>
+      <p matLine>{{data.street}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>local_post_office</mat-icon>
+      <p matLine>Zip Code</p>
+      <p matLine>{{data.zipcode}}</p>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+
+    <mat-list-item>
+      <mat-icon mat-list-icon>satellite</mat-icon>
+      <p matLine>State</p>
+      <p matLine>{{data.state}}</p>
+    </mat-list-item>
+
+  </mat-list>
+</div>

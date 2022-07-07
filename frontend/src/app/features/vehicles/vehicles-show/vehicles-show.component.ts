@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Injectable, Inject } from '@angular/core';
+import { Component, OnInit, Injectable, Inject } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '@environments/environment'
@@ -23,8 +23,16 @@ export class VehicleResolver implements Resolve<Vehicle> {
   templateUrl: './vehicles-show.component.html',
   styleUrls: ['./vehicles-show.component.scss']
 })
-export class VehiclesShowComponent {
+export class VehiclesShowComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) {}
+  public vehicle: Vehicle;
+
+  constructor(
+    private route: ActivatedRoute,
+  ) {
+    this.vehicle = this.route.snapshot.data.vehicle
+  }
+
+  ngOnInit() {    }
 
 }

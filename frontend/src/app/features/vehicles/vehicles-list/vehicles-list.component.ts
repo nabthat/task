@@ -13,7 +13,7 @@ import { DatastoreService } from '@core/services/datastore.service'
 // models
 import { Vehicle } from '@models/vehicle.model'
 import { VehiclesDataSource } from './vehicles.datasource';
-import { VehiclesShowComponent } from '../vehicles-show/vehicles-show.component';
+import { LocationModalComponent } from '@shared/components/location-modal/location-modal.component';
 
 @Component({
   selector: 'app-vehicles-vehicles-list',
@@ -29,7 +29,7 @@ export class VehiclesListComponent implements AfterViewInit {
   dataSource: VehiclesDataSource;
   paramsChangeSubscription: Subscription;
 
-  displayedColumns: string[] = ['index', 'vin', 'stock', 'year', 'name', 'price', 'status'];
+  displayedColumns: string[] = ['index', 'vin', 'stock', 'year', 'name', 'price', 'location', 'status'];
   
   availablePageSizes: number[] = [5, 10, 20]
 
@@ -87,8 +87,8 @@ export class VehiclesListComponent implements AfterViewInit {
     this.changePage()
   }
 
-  openDialog( vehicle ) {
-    this.dialog.open(VehiclesShowComponent , { width: '400px' , data : vehicle } );
+  openLocationDialog( location ) {
+    this.dialog.open(LocationModalComponent , { width: '400px' , data : location } );
   }
 
   ngOnDestroy() {

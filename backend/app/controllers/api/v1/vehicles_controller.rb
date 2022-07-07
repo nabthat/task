@@ -22,7 +22,11 @@ class Api::V1::VehiclesController < ApplicationController
     end
 
     vehicles = query.paginate(page: page, per_page: per_page)
-    render json: Api::V1::VehicleSerializer.new(vehicles).serialized_json
+
+    options = {}
+    options[:include] = [:location]
+
+    render json: Api::V1::VehicleSerializer.new(vehicles, options).serialized_json
   end
 
   def show
