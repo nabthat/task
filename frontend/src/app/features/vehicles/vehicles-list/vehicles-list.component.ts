@@ -26,6 +26,9 @@ export class VehiclesListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Vehicle>;
 
+  searchText: string
+  searchLocation: string
+
   dataSource: VehiclesDataSource;
   paramsChangeSubscription: Subscription;
 
