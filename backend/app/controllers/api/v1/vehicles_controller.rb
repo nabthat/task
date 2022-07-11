@@ -1,40 +1,47 @@
 class Api::V1::VehiclesController < ApplicationController
 
   def index
-    page = permitted_params[:page][:number] if permitted_params[:page].present?
-    page ||= 1
+    @vehicles = Vehicle.includes(:location)
 
-    per_page = permitted_params[:page][:size] if permitted_params[:page].present?
-    per_page ||= 10
-
-    query = Vehicle
-
-    query = case params['sort']
-    when 'year_desc'
-      query.reorder("vehicles.year DESC")
-    when 'price_asc'
-      query.reorder("vehicles.price ASC")
-    when 'price_desc'
-      query.reorder("vehicles.price DESC")
-    # when 'name_asc'
-    else
-      query.reorder("vehicles.year ASC")
-    end
-
-    vehicles = query.paginate(page: page, per_page: per_page)
+    apply_filters
+    apply_sort
+    apply_pagination
 
     options = {}
     options[:include] = [:location]
 
-    render json: Api::V1::VehicleSerializer.new(vehicles, options).serialized_json
+    sleep(1) # just to let Angular app show a pretty spinner
+
+    render json: Api::V1::VehicleSerializer.new(@vehicles, options).serialized_json
   end
 
   def show
-    vehicle = Vehicle.find_by_vin(params[:id])
-    render json: Api::V1::VehicleSerializer.new(vehicle).serialized_json
+    @vehicle = Vehicle.find_by_vin(params[:id])
+    options = {}
+    options[:include] = [:location]
+    render json: Api::V1::VehicleSerializer.new(@vehicle, options).serialized_json
   end
 
   protected
+
+    def apply_filters
+      # add filters
+    end
+
+    def apply_sort
+      # add sorting
+    end
+
+    def apply_pagination
+      # pageIndex
+      page = permitted_params[:page][:number] if permitted_params[:page].present?
+      page ||= 1
+      # pageSize
+      per_page = permitted_params[:page][:size] if permitted_params[:page].present?
+      per_page ||= 10
+      # will_paginate
+      @vehicles = @vehicles.paginate(page: page, per_page: per_page)
+    end
 
     def permitted_params
       permitted_filters = params.permit(:sort, page: {}, filter: {})

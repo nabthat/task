@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'fast_jsonapi', git: 'https://github.com/jsonapi-serializer/jsonapi-serializer', tag: '1.6.0'
 gem 'will_paginate'
+gem 'translate_enum'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

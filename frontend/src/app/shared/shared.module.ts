@@ -50,6 +50,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 // components
 import { LocationModalComponent } from './components/location-modal/location-modal.component';
+// pipes
+import { AsPricePipe } from './pipes/as-price.pipe';
 
 @NgModule({
   imports: [
@@ -101,10 +103,12 @@ import { LocationModalComponent } from './components/location-modal/location-mod
     ScrollingModule,
   ],
   declarations: [
-    LocationModalComponent
+    LocationModalComponent,
+    AsPricePipe
   ],
   providers: [],
   exports: [
+    AsPricePipe,
     FormsModule,
     A11yModule,
     CdkAccordionModule,

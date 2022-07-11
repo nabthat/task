@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params, Event, NavigationEnd } from '@angular/router';
 import { DataSource } from '@angular/cdk/collections';
-import { combineLatest, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { combineLatest, Subscription, Subject } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
 // material
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -26,13 +26,14 @@ export class VehiclesListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Vehicle>;
 
-  searchText: string
-  searchLocation: string
+  filterSearch: string;
+  filterStatus: string;
+  filterKind: string;
 
   dataSource: VehiclesDataSource;
   paramsChangeSubscription: Subscription;
 
-  displayedColumns: string[] = ['index', 'vin', 'stock', 'year', 'name', 'price', 'location', 'status'];
+  displayedColumns: string[] = ['index', 'vin', 'kind', 'year', 'name', 'price', 'msrp', 'monthly_payment', 'location', 'status'];
   
   availablePageSizes: number[] = [5, 10, 20]
 
@@ -41,6 +42,9 @@ export class VehiclesListComponent implements AfterViewInit {
 
   sortActive: string = 'name'
   sortDirection: 'asc'|'desc' = 'asc'
+
+  private searchDebouncer = new Subject<any>();
+  private searchDebouncerSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -62,11 +66,25 @@ export class VehiclesListComponent implements AfterViewInit {
        // combine parameters from route and queryParams
        map(([params, queryParams]) => ({...params, ...queryParams}))
     ).subscribe( params => {
+      let filters = {}
+      if (params['search']) {
+        filters['search'] = params['search']
+      }
+      if (params['status']) {
+        filters['status'] = params['status']
+      }
+      if (params['kind']) {
+        filters['kind'] = params['kind']
+      }
       this.dataSource.loadData(
         !!params['page'] ? params['page'] : 1,
         !!params['perPage'] ? params['perPage'] : this.defaultPageSize,
-        !!params['sort'] ? params['sort'] : this.defaultSort
+        !!params['sort'] ? params['sort'] : this.defaultSort,
+        filters
       )
+    })
+    this.searchDebouncerSubscription = this.searchDebouncer.pipe(debounceTime(1000)).subscribe( (search) => {
+      this.changeFilters()
     })
   }
 
@@ -82,6 +100,15 @@ export class VehiclesListComponent implements AfterViewInit {
     if (sort != this.defaultSort) {
       params['sort'] = sort
     }
+    if (this.filterSearch) {
+      params['search'] = this.filterSearch
+    }
+    if (this.filterStatus) {
+      params['status'] = this.filterStatus
+    }
+    if (this.filterKind) {
+      params['kind'] = this.filterKind
+    }
     this.router.navigate(['/vehicles'], { queryParams: params })
   }
 
@@ -90,12 +117,30 @@ export class VehiclesListComponent implements AfterViewInit {
     this.changePage()
   }
 
+  changeFilters() {
+    this.paginator.pageIndex = 0
+    this.changePage() 
+  }
+
   openLocationDialog( location ) {
     this.dialog.open(LocationModalComponent , { width: '400px' , data : location } );
   }
 
   ngOnDestroy() {
     this.paramsChangeSubscription.unsubscribe()
+  }
+
+  onFilterSearchChange(search) {
+    this.searchDebouncer.next(this.filterSearch)
+  }
+
+  onFilterSelectChange(event) {
+    this.changeFilters()
+  }
+
+  onDestroy() {
+    this.paramsChangeSubscription.unsubscribe()
+    this.searchDebouncerSubscription.unsubscribe()
   }
 
 }

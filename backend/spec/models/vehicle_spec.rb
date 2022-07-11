@@ -3,8 +3,10 @@
 # Table name: vehicles
 #
 #  id          :uuid             not null, primary key
+#  kind        :integer          default("new"), not null
 #  make        :string
 #  model       :string
+#  msrp        :integer
 #  price       :integer
 #  status      :integer          default("in_transit"), not null
 #  stock       :string

@@ -20,4 +20,8 @@ export class Location extends JsonApiModel {
   @Attribute()
   street: string;
 
+  get combinedName() : string {
+    return [this.name, this.city, this.street, this.state, this.zipcode].join(', ')
+  }
+
 }

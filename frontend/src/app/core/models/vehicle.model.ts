@@ -7,6 +7,12 @@ import { Location } from '@models/location.model'
 export class Vehicle extends JsonApiModel {
 
   @Attribute()
+  name: string;
+
+  @Attribute()
+  kind: string;
+
+  @Attribute()
   status: string;
   
   @Attribute()
@@ -30,29 +36,13 @@ export class Vehicle extends JsonApiModel {
   @Attribute()
   price: number;
 
+  @Attribute()
+  msrp: number;
+
+  @Attribute()
+  'monthly-payment': number;
+
   @BelongsTo()
   location: Location;
-
-  get name(): string {
-    return [this.make, this.model, this.trim].join(' ')
-  }
-
-  get translatedStatus(): string {
-    let translatedStatus: string = 'Unknown'
-    switch(this.status) {
-      case 'in_transit':
-        translatedStatus = 'In Transit'
-        break;
-      case 'available':
-        translatedStatus = 'Available'
-        break;
-      case 'sold':
-        translatedStatus = 'Sold'
-        break;
-      default:
-        translatedStatus = 'Unknown'
-    }
-    return translatedStatus
-  }
 
 }

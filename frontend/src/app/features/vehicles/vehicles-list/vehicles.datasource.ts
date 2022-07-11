@@ -16,7 +16,7 @@ export class VehiclesDataSource extends DataSource<Vehicle> {
   sort: MatSort | undefined;
 
   private dataSubject = new BehaviorSubject<Vehicle[]>([]);
-  private loadingSubject = new BehaviorSubject<boolean>(false);
+  private loadingSubject = new BehaviorSubject<boolean>(true);
 
   public loading$ = this.loadingSubject.asObservable();
 
@@ -35,7 +35,7 @@ export class VehiclesDataSource extends DataSource<Vehicle> {
     this.loadingSubject.complete();
   }
 
-  loadData(pageNumber: number, pageSize: number, sort: string) {
+  loadData(pageNumber: number, pageSize: number, sort: string, filter?: { [key: string]: string } ) {
     
     this.loadingSubject.next(true);
     
@@ -44,8 +44,22 @@ export class VehiclesDataSource extends DataSource<Vehicle> {
         number: pageNumber,
         size: pageSize,
       },
+      filter: {},
       sort: sort
     }
+
+    if (filter['search']) {
+      params['filter']['search'] = filter['search']
+    }
+
+    if (filter['status']) {
+      params['filter']['status'] = filter['status']
+    }
+
+    if (filter['kind']) {
+      params['filter']['kind'] = filter['kind']
+    }
+
     this.datastoreService.findAll(Vehicle, params, undefined, environment.apiUrl +  environment.apiPath + "/vehicles").
       pipe(first()).subscribe( (response) => {
         let models = response.getModels()

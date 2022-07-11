@@ -30,4 +30,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      vehicle:
+        kind_list:
+          new: New
+          used: Used
+        status_list:
+          in_transit: In Transit
+          available: Available
+          sold: Sold
