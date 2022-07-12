@@ -1,0 +1,15 @@
+h1{
+  display: flex;
+  align-items: center;
+
+  button{
+    margin-right: 20px;
+  }
+}
+
+.mat-list-base .mat-list-item .mat-line:first-child{
+  color: #ddd;
+}
+.mat-list-base .mat-list-item .mat-line:nth-child(n+2){
+  font-size: 20px;
+}

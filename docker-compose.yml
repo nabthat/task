@@ -1,0 +1,45 @@
+version: '3'
+services:
+  backend-app:
+    container_name: nabthat-task-backend-app
+    image: naborg/nabthat-task-backend
+    ports:
+      - '3000:3000'
+      - '3035:3035'
+    volumes:
+      - ./backend:/home/deploy/rails-app
+    stdin_open: true
+    tty: true
+    security_opt:
+      - seccomp:unconfined
+    depends_on:
+      - 'backend-db'
+      - 'backend-db-test'
+  backend-db:
+    container_name: nabthat-task-backend-db
+    image: 'postgres:12.5-alpine'
+    environment:
+      POSTGRES_USER: nabthat-task
+      POSTGRES_PASSWORD: nabthat-task
+      POSTGRES_DB: nabthat-task
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+      - '.:/app'
+  backend-db-test:
+    container_name: nabthat-task-backend-db-test
+    image: 'postgres:12.5-alpine'
+    environment:
+      POSTGRES_USER: nabthat-task-test
+      POSTGRES_PASSWORD: nabthat-task-test
+      POSTGRES_DB: nabthat-task-test
+  frontend-app:
+    container_name: nabthat-task-frontend-app
+    image: naborg/nabthat-task-frontend
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./frontend:/home/deploy/ng-app
+    stdin_open: true
+    tty: true
+volumes:
+  postgres:

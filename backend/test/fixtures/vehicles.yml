@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: vehicles
+#
+#  id          :uuid             not null, primary key
+#  kind        :integer          default("new"), not null
+#  make        :string
+#  model       :string
+#  msrp        :integer
+#  price       :integer
+#  status      :integer          default("in_transit"), not null
+#  stock       :string
+#  trim        :string
+#  vin         :string
+#  year        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  location_id :uuid
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

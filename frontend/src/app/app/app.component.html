@@ -1,0 +1,35 @@
+<!-- HEADER -->
+<mat-toolbar class="toolbar-header" color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>Nabthat Task</span>
+</mat-toolbar>
+
+
+
+<mat-sidenav-container class="site-wrapper">
+
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['dashboard']" routerLinkActive="mat-list-single-selected-option">
+        <mat-icon matListIcon>cottage</mat-icon>
+        Dashboard
+      </a>
+      <a mat-list-item [routerLink]="['vehicles']" routerLinkActive="mat-list-single-selected-option">
+        <mat-icon matListIcon>directions_car</mat-icon>
+        Vehicles
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="site-content">
+      <router-outlet #o="outlet"></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+<!-- FOOTER -->
+<mat-toolbar class="toolbar-footer">Nabthat</mat-toolbar>
